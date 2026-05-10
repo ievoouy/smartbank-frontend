@@ -1,6 +1,33 @@
+import { useEffect, useState } from "react";
+import API from "../services/api";
+
+
 function Dashboard() {
 
-    const token = localStorage.getItem("token");
+    const [accounts, setAccounts] = useState([]);
+
+    useEffect(() => {
+
+        fetchAccounts();
+
+    }, []);
+
+    const fetchAccounts = async () => {
+
+        try {
+
+            const response =
+                await API.get("/accounts");
+
+            setAccounts(response.data);
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Failed to fetch accounts");
+        }
+    };
 
     const handleLogout = () => {
 
@@ -32,17 +59,45 @@ function Dashboard() {
 
                 <div className="bg-white rounded-2xl shadow-lg p-6">
 
-                    <h2 className="text-2xl font-bold mb-4">
-                        Welcome to SmartBank 🚀
+                    <h2 className="text-2xl font-bold mb-6">
+                        Your Accounts
                     </h2>
 
-                    <p className="mb-2">
-                        JWT Token Stored:
-                    </p>
+                    {
+                        accounts.length === 0
+                            ? (
+                                <p>No Accounts Found</p>
+                            )
+                            : (
+                                accounts.map((account) => (
 
-                    <div className="bg-gray-200 p-4 rounded-lg break-all text-sm">
-                        {token}
-                    </div>
+                                    <div
+                                        key={account.id}
+                                        className="border p-4 rounded-lg mb-4"
+                                    >
+
+                                        <p>
+                                            <strong>Account Number:</strong>
+                                            {" "}
+                                            {account.accountNumber}
+                                        </p>
+
+                                        <p>
+                                            <strong>Balance:</strong>
+                                            {" "}
+                                            ₹{account.balance}
+                                        </p>
+
+                                        <p>
+                                            <strong>Type:</strong>
+                                            {" "}
+                                            {account.accountType}
+                                        </p>
+
+                                    </div>
+                                ))
+                            )
+                    }
 
                 </div>
 
