@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import CreateAccount from "../components/CreateAccount";
 
 
 function Dashboard() {
@@ -46,6 +47,8 @@ function Dashboard() {
                     SmartBank Dashboard
                 </h1>
 
+
+
                 <button
                     onClick={handleLogout}
                     className="bg-red-500 px-4 py-2 rounded-lg"
@@ -58,6 +61,10 @@ function Dashboard() {
             <div className="p-10">
 
                 <div className="bg-white rounded-2xl shadow-lg p-6">
+
+                    <CreateAccount
+                        refreshAccounts={fetchAccounts}
+                    />
 
                     <h2 className="text-2xl font-bold mb-6">
                         Your Accounts
