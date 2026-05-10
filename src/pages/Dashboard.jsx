@@ -3,6 +3,7 @@ import API from "../services/api";
 import CreateAccount from "../components/CreateAccount";
 import TransactionForm from "../components/TransactionForm";
 import TransferForm from "../components/TransferForm";
+import TransactionHistory from "../components/TransactionHistory";
 
 
 function Dashboard() {
@@ -71,6 +72,8 @@ function Dashboard() {
                     <TransferForm
                         refreshAccounts={fetchAccounts}
                     />
+
+                    <TransactionHistory />
 
                     <h2 className="text-2xl font-bold mb-6">
                         Your Accounts
