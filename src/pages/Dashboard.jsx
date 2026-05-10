@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 import CreateAccount from "../components/CreateAccount";
+import TransactionForm from "../components/TransactionForm";
 
 
 function Dashboard() {
@@ -100,6 +101,18 @@ function Dashboard() {
                                             {" "}
                                             {account.accountType}
                                         </p>
+
+                                        <TransactionForm
+                                            accountId={account.id}
+                                            type="DEPOSIT"
+                                            refreshAccounts={fetchAccounts}
+                                        />
+
+                                        <TransactionForm
+                                            accountId={account.id}
+                                            type="WITHDRAW"
+                                            refreshAccounts={fetchAccounts}
+                                        />
 
                                     </div>
                                 ))
