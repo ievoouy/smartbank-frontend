@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../services/api";
 import CreateAccount from "../components/CreateAccount";
 import TransactionForm from "../components/TransactionForm";
+import TransferForm from "../components/TransferForm";
 
 
 function Dashboard() {
@@ -64,6 +65,10 @@ function Dashboard() {
                 <div className="bg-white rounded-2xl shadow-lg p-6">
 
                     <CreateAccount
+                        refreshAccounts={fetchAccounts}
+                    />
+
+                    <TransferForm
                         refreshAccounts={fetchAccounts}
                     />
 
